@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Minhas duplicatas</h1>
   <%= @invoices.each do |invoice| %>
-    <p>Valor nominal: R$ <%= invoice.invoice_value %> | Prazo: <%= invoice.terms %> | Taxa: | Valor a receber: </p>
+    <p>Valor nominal: R$ <%= invoice.invoice_value %> | Vencimento: | Prazo: <%= invoice.terms %> | Taxa: | Valor a receber: </p>
   <% end %>
 
 </div>
