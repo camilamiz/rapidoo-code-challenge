@@ -1,0 +1,34 @@
+<div class="container col-xs-4">
+  <h1>Simulador</h1>
+  <%= simple_form_for [@invoice] do |f| %>
+    <%= f.input :invoice_value, label: "Valor nominal", default: 0, id: "invoice-value" %>
+    <%= f.input :due_date, label: "Vencimento", as: :date, id: "due-date" %>
+  <% end %>
+
+
+  <div class="btn btn-primary" id="simulator-button">Simular</div>
+
+<script>
+
+  const invoiceValue = getElementById("invoice-value");
+  const dueDate = getElementById("due-date");
+  const simulatorButton = getElementById("simulator-button");
+  const today = new Date();
+  let terms = dueDate - today
+  let i = 0.0165;
+
+  const rate = (terms) => {
+    (Math.ceil(terms / 10)) * i
+  }
+
+  const receivable = (rate, invoiceValue) => {
+    invoiceValue * (1 - rate)
+  }
+
+
+</script>
+
+</div>
+
+
+  <%= render 'form', invoice: @invoice %>

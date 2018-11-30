@@ -1,0 +1,7 @@
+  <%= simple_form_for [@invoice] do |f| %>
+  <%= f.input :invoice_value, label: "Valor nominal" %>
+  <%= f.input :due_date, label: "Vencimento" %>
+
+  <%= f.button :submit, label: "Salvar", class: "btn btn-primary" %>
+<% end %>
+
