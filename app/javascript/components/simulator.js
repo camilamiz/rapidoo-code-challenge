@@ -14,13 +14,11 @@ function simulatorFunction() {
 
       return (Math.ceil(terms / 10)) * i
     }
-    console.log(rate(invoiceTerms));
 
 
     let receivable = (invValue, rateValue) => {
       return invValue * (1 - rateValue)
     }
-    console.log(receivable(invoiceValue, rate(invoiceTerms)));
 
     simulatorRate.insertAdjacentHTML("afterbegin", 'Valor da taxa: ' + (rate(invoiceTerms))*100 + '%');
     simulatorReceivable.insertAdjacentHTML("afterbegin", 'Valor a receber: R$' + receivable(invoiceValue, rate(invoiceTerms)));

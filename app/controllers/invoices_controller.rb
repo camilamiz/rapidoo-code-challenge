@@ -11,14 +11,14 @@ class InvoicesController < ApplicationController
   def new
     @user = current_user
     @invoice = Invoice.new
-    # @invoice_value = params[:invoice_value]
-    # @due_date = params[:due_date]
-    # invoice_factoring
   end
 
   def create
     @invoice = Invoice.new(invoice_params)
-
+    terms = @invoice.terms
+    @invoice.rate = ((terms / 10).ceil + 1) * 0.0165
+    @invoice.receivable = @invoice.invoice_value * (1 - @invoice.rate)
+    raise
     if @invoice.save
       redirect_to invoices_path
     else
