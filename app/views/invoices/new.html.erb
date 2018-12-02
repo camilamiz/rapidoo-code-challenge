@@ -1,34 +1,61 @@
 <div class="container col-xs-4">
   <h1>Simulador</h1>
   <%= simple_form_for [@invoice] do |f| %>
-    <%= f.input :invoice_value, label: "Valor nominal", default: 0, id: "invoice-value" %>
-    <%= f.input :due_date, label: "Vencimento", as: :date, id: "due-date" %>
+    <%= f.input :invoice_value, label: "Valor nominal", as: :integer, default: 0, input_html: { id: "invoice-value" } %>
+    <%= f.input :terms, label: "Prazo de vencimento", as: :integer, default: 0, input_html: { id: "invoice-terms" } %>
   <% end %>
-
-
   <div class="btn btn-primary" id="simulator-button">Simular</div>
 
-<script>
-
-  const invoiceValue = getElementById("invoice-value");
-  const dueDate = getElementById("due-date");
-  const simulatorButton = getElementById("simulator-button");
-  const today = new Date();
-  let terms = dueDate - today
-  let i = 0.0165;
-
-  const rate = (terms) => {
-    (Math.ceil(terms / 10)) * i
-  }
-
-  const receivable = (rate, invoiceValue) => {
-    invoiceValue * (1 - rate)
-  }
+  <p id="simulator-rate"></p>
+  <p id="simulator-receivable"></p>
 
 
-</script>
 
 </div>
 
+<script>
 
+
+  const simulatorButton = document.getElementById("simulator-button");
+  // const dueDate = (document.getElementById("due-date");
+
+  simulatorButton.addEventListener("click", function() {
+  const invoiceValue = document.getElementById("invoice-value").value;
+  const invoiceTerms = document.getElementById("invoice-terms").value;
+  const simulatorReceivable = document.getElementById("simulator-receivable");
+    // simulatorRate.insertAdjacentHTML("afterbegin", rate());
+    simulatorReceivable.insertAdjacentHTML("beforeend", invoiceValue);
+    console.log(invoiceTerms)
+    // console.log(dueDate);
+    // console.log(invoiceValue);
+    // console.log(terms);
+  });
+
+  // const simulatorRate = document.getElementById("simulator-rate");
+
+  // const today = new Date();
+
+  // let terms = dueDate - today
+  // let i = 0.0165;
+
+  // const rate = () => {
+  //   (Math.ceil(terms / 10)) * i
+  // }
+
+  // const receivable = () => {
+  //   invoiceValue * (1 - rate)
+  // }
+
+
+  // document.getElementById('simulator-rate').innerHTML = 'Rate: ' + rate();
+  // document.getElementById('simulator-receivable').innerHTML = 'Receivable: ' + 'teste';
+
+</script>
+
+
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<div class="container">
   <%= render 'form', invoice: @invoice %>
+</div>
