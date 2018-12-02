@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <a href="/" class="navbar-wagon-brand">
-    <img src="images/logo.png" alt="logo">
+    <img src="#" alt="logo">
   </a>
 
   <!-- Right Navigation -->
@@ -9,7 +9,7 @@
 
     <% if user_signed_in? %>
 
-    <a href="" class="navbar-wagon-item navbar-wagon-link">Simulador</a>
+    <%= link_to "Simulador", new_invoice_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <%= link_to "Minhas duplicatas", invoices_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <a href="" class="navbar-wagon-item navbar-wagon-link">Meu cadastro</a>
     <%= link_to destroy_user_session_path, method: :delete do %><%= t(".sign_out", default: "Log out") %>

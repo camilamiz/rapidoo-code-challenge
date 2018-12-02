@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :new, :create, :destroy]
+  before_action :set_invoice, only: [:show, :destroy]
 
   def index
     @invoices = Invoice.where(user_id: current_user.id)
@@ -9,11 +9,16 @@ class InvoicesController < ApplicationController
   end
 
   def new
+    @user = current_user
     @invoice = Invoice.new
+    # @invoice_value = params[:invoice_value]
+    # @due_date = params[:due_date]
+    # invoice_factoring
   end
 
   def create
     @invoice = Invoice.new(invoice_params)
+
     if @invoice.save
       redirect_to invoices_path
     else
@@ -26,6 +31,7 @@ class InvoicesController < ApplicationController
 
   def update
     @invoice.update(invoice_params)
+    @invoice.user = current_user
     redirect_to invoice_path(@invoice)
   end
 
@@ -37,16 +43,18 @@ class InvoicesController < ApplicationController
   private
 
   def set_invoice
-    @invoice = Invoice.find(params(:invoice_id))
+    @invoice = Invoice.find(params(:id))
   end
 
   def invoice_params
     params.require(:invoice).permit(:invoice_value, :terms)
   end
 
-  def interest_rate
-  end
+  # def invoice_factoring
+  #   i_day = 0.0165
+  #   @terms = @due_date - Date.today
+  #   @i_operation = ((@terms / 10).ceil) * i_day
+  #   @receivable = @invoice_value * (1 - @i_operation)
+  # end
 
-  def amount_receivable
-  end
 end
