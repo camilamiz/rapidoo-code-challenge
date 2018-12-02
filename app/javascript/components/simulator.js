@@ -20,8 +20,8 @@ function simulatorFunction() {
       return invValue * (1 - rateValue)
     }
 
-    simulatorRate.insertAdjacentHTML("afterbegin", 'Valor da taxa: ' + (rate(invoiceTerms))*100 + '%');
-    simulatorReceivable.insertAdjacentHTML("afterbegin", 'Valor a receber: R$' + receivable(invoiceValue, rate(invoiceTerms)));
+    simulatorRate.innerHTML = 'Valor da taxa: ' + ((rate(invoiceTerms))*100).toFixed(2) + '%';
+    simulatorReceivable.innerHTML = 'Valor a receber: R$' + receivable(invoiceValue, rate(invoiceTerms));
   });
 }
 export { simulatorFunction };
