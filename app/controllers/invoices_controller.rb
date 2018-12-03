@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :destroy]
+  before_action :set_invoice, only: [:show, :destroy, :edit, :update]
 
   def index
     @invoices = Invoice.where(user_id: current_user.id, saved: true)
@@ -41,9 +41,9 @@ class InvoicesController < ApplicationController
   end
 
   def update
+    @invoice.saved = true
     @invoice.update(invoice_params)
-    @invoice.user = current_user
-    redirect_to invoice_path(@invoice)
+    redirect_to invoices_path
   end
 
   def destroy
@@ -54,7 +54,7 @@ class InvoicesController < ApplicationController
   private
 
   def set_invoice
-    @invoice = Invoice.find(params(:id))
+    @invoice = Invoice.find(params[:id])
   end
 
   def invoice_params
