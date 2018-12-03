@@ -1,24 +1,13 @@
-<div class="container col-xs-4">
-  <h1>Simulador</h1>
-  <%= simple_form_for [@invoice] do |f| %>
-    <%= f.input :invoice_value, label: "Valor nominal", as: :integer, default: 0, input_html: { id: "invoice-value" } %>
-    <%= f.input :terms, label: "Prazo de vencimento", as: :integer, default: 0, input_html: { id: "invoice-terms" } %>
-  <% end %>
-  <div class="btn btn-primary" id="simulator-button">Simular</div>
-
-  <p id="simulator-rate"></p>
-  <p id="simulator-receivable"></p>
-
-
-
-</div>
-
-
-
-
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
 <div class="container">
-  <%= render 'form', invoice: @invoice %>
+  <div class="text-center">
+    <h1>Simulador</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <%= render 'form', invoice: @invoice %>
+    </div>
+  </div>
+    <% @invoices.each do |invoice| %>
+    <p>Data: <%= invoice.created_at %>| Valor nominal: R$ <%= invoice.invoice_value %> | Prazo: <%= invoice.terms %> | Taxa: <%= (invoice.rate)*100 %>% | Valor a receber: R$ <%= invoice.receivable %> | Status: <%= invoice.saved %></p>
+  <% end %>
 </div>

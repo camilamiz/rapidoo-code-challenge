@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :destroy]
 
   def index
-    @invoices = Invoice.where(user_id: current_user.id)
+    @invoices = Invoice.where(user_id: current_user.id, saved: true)
   end
 
   def show
@@ -11,6 +11,7 @@ class InvoicesController < ApplicationController
   def new
     @user = current_user
     @invoice = Invoice.new
+    @invoices = Invoice.where(user_id: current_user.id, saved: nil)
   end
 
   def create
@@ -19,10 +20,20 @@ class InvoicesController < ApplicationController
     @invoice.rate = ((terms / 10.to_f).ceil) * 0.0165
     @invoice.receivable = @invoice.invoice_value * (1 - @invoice.rate)
     @invoice.user = current_user
-    if @invoice.save
-      redirect_to invoices_path
+    @invoice.saved = true if saved_invoice?
+
+    if @invoice.saved
+      if @invoice.save
+        redirect_to invoices_path
+      else
+        render :new
+      end
     else
-      render :new
+      if @invoice.save
+        redirect_to new_invoice_path
+      else
+        render :new
+      end
     end
   end
 
@@ -50,11 +61,12 @@ class InvoicesController < ApplicationController
     params.require(:invoice).permit(:invoice_value, :terms)
   end
 
-  # def invoice_factoring
-  #   i_day = 0.0165
-  #   @terms = @due_date - Date.today
-  #   @i_operation = ((@terms / 10).ceil) * i_day
-  #   @receivable = @invoice_value * (1 - @i_operation)
+  def saved_invoice?
+    params[:commit] == 'Salvar'
+  end
+
+  # def simulation?
+  #   params[:commit] == 'Simular'
   # end
 
 end

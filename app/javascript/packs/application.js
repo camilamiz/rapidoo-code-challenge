@@ -1,4 +1,4 @@
 import "bootstrap";
-import { simulatorFunction } from '../components/simulator';
+// import { simulatorFunction } from '../components/simulator';
 
-simulatorFunction();
+// simulatorFunction();
