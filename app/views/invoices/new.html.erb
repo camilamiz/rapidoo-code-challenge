@@ -8,6 +8,6 @@
     </div>
   </div>
     <% @invoices.each do |invoice| %>
-    <p>Data: <%= invoice.created_at %>| Valor nominal: R$ <%= invoice.invoice_value %> | Prazo: <%= invoice.terms %> | Taxa: <%= (invoice.rate)*100 %>% | Valor a receber: R$ <%= invoice.receivable %> | Status: <%= invoice.saved %></p>
+    <p>Data: <%= invoice.created_at %>| Valor nominal: R$ <%= invoice.invoice_value %> | Prazo: <%= invoice.terms %> | Taxa: <%= (invoice.rate)*100 %>% | Valor a receber: R$ <%= invoice.receivable %> | Status: <%= invoice.saved %> | <%= link_to 'Submeter esta duplicata', edit_invoice_path(invoice) %></p>
   <% end %>
 </div>
