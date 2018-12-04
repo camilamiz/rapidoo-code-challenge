@@ -1,6 +1,6 @@
-<div class="navbar-wagon">
+<div class="navbar-wagon navbar-fixed-top">
   <!-- Logo -->
-  <a href="/" class="navbar-wagon-brand">
+  <a href="/" class="navbar-wagon-brand" id="logo">
     <img src="#" alt="logo">
   </a>
 
@@ -12,7 +12,8 @@
     <%= link_to "Simulador", new_invoice_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <%= link_to "Minhas duplicatas", invoices_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <a href="" class="navbar-wagon-item navbar-wagon-link">Meu cadastro</a>
-    <%= link_to destroy_user_session_path, method: :delete do %><%= t(".sign_out", default: "Log out") %>
+    <%= link_to destroy_user_session_path, class: "navbar-wagon-item navbar-wagon-link", method: :delete do %>
+      <%= t(".sign_out", default: "Log out") %>
     <% end %>
 
   <% else %>
