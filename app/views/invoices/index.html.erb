@@ -1,7 +1,34 @@
 <div class="container">
+  <div class="navbar-space"></div>
   <h1>Minhas duplicatas</h1>
   <% @invoices.each do |invoice| %>
-    <p>Data: <%= invoice.created_at %>| Valor nominal: R$ <%= invoice.invoice_value %> | Prazo: <%= invoice.terms %> | Taxa: <%= (invoice.rate)*100 %>% | Valor a receber: R$ <%= invoice.receivable %> | Status: <%= invoice.saved %></p>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="invoice-box">
+          <div class="col-xs-1">
+            <div class="invoice-id">
+              <p>#<%= invoice.id %></p>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="submit-date">
+              <p>Data: <%= invoice.created_at %></p>
+            </div>
+          </div>
+          <div class="col-xs-3">
+            <p>Valor nominal: R$ <%= invoice.invoice_value %></p>
+            <p>Prazo: <%= invoice.terms %></p>
+          </div>
+          <div class="col-xs-3">
+            <p>Valor a receber: R$ <%= invoice.receivable %></p>
+            <p>Taxa: <%= (invoice.rate)*100 %>%</p>
+          </div>
+        </div> <!-- invoice-box -->
+        <div>
+
+        </div>
+      </div>
+    </div>
   <% end %>
 
 </div>
