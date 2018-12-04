@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :destroy, :edit, :update]
 
   def index
-    @invoices = Invoice.where(user_id: current_user.id, saved: true)
+    @invoices = Invoice.where(user_id: current_user.id, saved: true).order('created_at DESC')
   end
 
   def show

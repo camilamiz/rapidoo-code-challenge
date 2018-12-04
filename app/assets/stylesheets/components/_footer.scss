@@ -1,9 +1,9 @@
 .stick-footer {
-  min-height: calc(100vh - 210px);
+  min-height: calc(100vh - 70px);
 }
 
 .footer {
-  background: rgb(62, 61, 61);
+  background: #00a986;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,4 +27,7 @@
 }
 .footer .fa-heart {
   color: #D23333;
+}
+.space-footer {
+  height: 100px;
 }
