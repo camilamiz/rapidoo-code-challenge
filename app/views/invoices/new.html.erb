@@ -1,23 +1,28 @@
   <div class="navbar-space"></div>
-    <div class="row">
-      <div class="simulador">
+  <div class="simulator-wrapper">
+    <div class="container">
+    <div class="simulador">
+      <div class="row">
         <div class="col-xs-12">
-          <div class="col-xs-4 col-xs-offset-2">
-            <div class="text-center">
-              <h1>Simulador</h1>
-              <p>texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto </p>
-            </div>
-          </div>
-          <div class="col-xs-6">
-            <div class="text-center">
-              <div class="form-box">
-                <%= render 'form', invoice: @invoice %>
+          <div class="col-xs-5 col-xs-offset-1">
+            <div class="info-simulator">
+              <div class="text-center">
+                <h1>Simule o valor de suas duplicatas</h1>
+                <br>
+                <p>texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto </p>
               </div>
             </div>
           </div>
+          <div class="col-xs-6">
+            <div class="simulator-box">
+              <%= render 'form', invoice: @invoice %>
+            </div>
+          </div>
         </div> <!-- col-xs-12 -->
-      </div> <!-- simulador -->
+      </div>
+    </div> <!-- simulador -->
     </div>
+  </div>
 <div class="container">
     <h1>Minhas duplicatas</h1>
     <% @invoices.each do |invoice| %>
@@ -43,7 +48,7 @@
               <p>Taxa: <%= (invoice.rate)*100 %>%</p>
             </div>
             <div class="col-xs-2">
-              <%= link_to 'Submeter', edit_invoice_path(invoice), class: 'btn btn-success' %>
+              <%= link_to 'Submeter', edit_invoice_path(invoice), class: 'btn btn-success', id:'submit-invoice-box' %>
             </div>
           </div> <!-- invoice-box -->
         </div>

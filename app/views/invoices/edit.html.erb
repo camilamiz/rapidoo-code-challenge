@@ -1,8 +1,17 @@
 <div class="container">
   <div class="navbar-space"></div>
-  <h1>Edit invoice</h1>
-
-  <%= render 'edit_form', invoice: @invoice %>
-  <%= @invoice.rate %>
-  <%= @invoice.receivable %>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="col-xs-6 col-xs-offset-3">
+        <div class="form-wrapper">
+          <div class="form-box">
+          <h2>Confirma os valores da duplicata #<%= @invoice.id %> ?</h2>
+          <p>Taxa: <%= (@invoice.rate) * 100 %>% | Valor a receber: R$<%= @invoice.receivable %>
+          </p>
+          <%= render 'edit_form', invoice: @invoice %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

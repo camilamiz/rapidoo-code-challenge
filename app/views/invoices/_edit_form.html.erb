@@ -1,8 +1,16 @@
 
 <%= simple_form_for [@invoice] do |f| %>
-  <%= f.input :invoice_value, label: "Valor nominal", as: :integer, default: 0, input_html: { id: "invoice-value" } %>
-  <%= f.input :terms, label: "Prazo de vencimento", as: :integer, default: 0, input_html: { id: "invoice-terms" } %>
+  <%= f.input :invoice_value, label: "Valor nominal (R$)", as: :integer, default: 0, input_html: { id: "invoice-value" } %>
+  <small class="form-text text-muted">Valor mínimo de R$500,00.</small>
+  <br><br>
+  <%= f.input :terms, label: "Prazo de vencimento (dias)", as: :integer, default: 0, input_html: { id: "invoice-terms" } %>
+  <small class="form-text text-muted">Prazo mínimo de 10 dias.</small>
+  <br><br>
 
-<%= f.button :submit, "Salvar", class: "btn btn-success" %>
-<% end %>
-
+<div class="text-center">
+  <%= link_to new_invoice_path do %>
+    <%= f.button :button, "Cancelar", class: "btn btn-default button-margin"%>
+  <% end %>
+  <%= f.button :submit, "Salvar", class: "btn btn-success button-margin" %>
+  <% end %>
+</div>

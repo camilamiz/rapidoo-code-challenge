@@ -2,11 +2,16 @@
 <div class="col-xs-8 col-xs-offset-2">
   <div class="form-group">
     <%= simple_form_for [@invoice] do |f| %>
-      <%= f.input :invoice_value, label: "Valor nominal", as: :integer, default: 0, input_html: { id: "invoice-value", class: 'form-control' } %>
-      <%= f.input :terms, label: "Prazo de vencimento", as: :integer, default: 0, input_html: { id: "invoice-terms", class: 'form-control' } %>
-
-      <%= f.button :submit, "Simular", class: "btn btn-default" %>
-      <%= f.button :submit, "Salvar", class: "btn btn-success" %>
+      <%= f.input :invoice_value, label: "Valor nominal (R$)", as: :integer, default: 0, input_html: { id: "invoice-value", class: 'form-control' } %>
+      <small class="form-text text-muted">Valor mínimo de R$500,00.</small>
+       <br><br>
+      <%= f.input :terms, label: "Prazo de vencimento (dias)", as: :integer, default: 0, input_html: { id: "invoice-terms", class: 'form-control' } %>
+      <small class="form-text text-muted">Prazo mínimo de 10 dias.</small>
+       <br><br>
+      <div class="text-center">
+        <%= f.button :submit, "Simular", class: "btn btn-default button-margin" %>
+        <%= f.button :submit, "Salvar", class: "btn btn-success button-margin" %>
+      </div>
     <% end %>
   </div>
 </div>
