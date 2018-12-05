@@ -28,40 +28,42 @@
     </div> <!-- simulador -->
     </div>
   </div>
-<div class="container">
-    <h1>Minhas duplicatas</h1>
-    <% if @invoices.nil? %>
-      <%= puts "cagou" %>
-    <% else %>
-      <% @invoices.each do |invoice| %>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="invoice-box">
-              <div class="col-xs-1">
-                <div class="invoice-id">
-                  <p>#<%= invoice.id %></p>
+<% if Invoice.where(saved: nil).count == 0 %>
+<% else %>
+  <div class="container">
+      <h1>Minhas duplicatas</h1>
+      <% if @invoices.nil? %>
+      <% else %>
+        <% @invoices.each do |invoice| %>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="invoice-box">
+                <div class="col-xs-1">
+                  <div class="invoice-id">
+                    <p>#<%= invoice.id %></p>
+                  </div>
                 </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="submit-date">
-                  <p>Data: <%= invoice.created_at %></p>
+                <div class="col-xs-3">
+                  <div class="submit-date">
+                    <p>Data: <%= invoice.created_at %></p>
+                  </div>
                 </div>
-              </div>
-              <div class="col-xs-3">
-                <p>Valor nominal: R$ <%= invoice.invoice_value %></p>
-                <p>Prazo: <%= invoice.terms %></p>
-              </div>
-              <div class="col-xs-3">
-                <p>Valor a receber: R$ <%= invoice.receivable %></p>
-                <p>Taxa: <%= (invoice.rate)*100 %>%</p>
-              </div>
-              <div class="col-xs-2">
-                <%= link_to 'Submeter', edit_invoice_path(invoice), class: 'btn btn-success', id:'submit-invoice-box' %>
-              </div>
-            </div> <!-- invoice-box -->
-          </div> <!-- col-xs-12 -->
-        </div> <!-- row -->
+                <div class="col-xs-3">
+                  <p>Valor nominal: R$ <%= invoice.invoice_value %></p>
+                  <p>Prazo: <%= invoice.terms %></p>
+                </div>
+                <div class="col-xs-3">
+                  <p>Valor a receber: R$ <%= invoice.receivable %></p>
+                  <p>Taxa: <%= (invoice.rate)*100 %>%</p>
+                </div>
+                <div class="col-xs-2">
+                  <%= link_to 'Submeter', edit_invoice_path(invoice), class: 'btn btn-success', id:'submit-invoice-box' %>
+                </div>
+              </div> <!-- invoice-box -->
+            </div> <!-- col-xs-12 -->
+          </div> <!-- row -->
+        <% end %>
       <% end %>
-    <% end %>
     <div class="space-footer"></div>
+    <% end %>
 </div>
