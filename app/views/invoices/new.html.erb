@@ -31,7 +31,9 @@
 <% if Invoice.where(saved: nil).count == 0 %>
 <% else %>
   <div class="container">
-      <h1>Minhas duplicatas</h1>
+    <div class="text-center">
+      <h1>Minhas simulações</h1>
+    </div>
       <% if @invoices.nil? %>
       <% else %>
         <% @invoices.each do |invoice| %>

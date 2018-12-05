@@ -1,11 +1,18 @@
 <div id="banner" alt="banner - Photo by rawpixel on Unsplash">
   <div class="banner-box">
     <div class="h1-message">
-      <h1>Sua empresa precisa de fôlego financeiro?</h1>
+      <h1>Sua empresa precisa de fôle
+      go financeiro?</h1>
       <p>Ajudamos a financiar os recebíveis da sua empresa</p>
     </div>
-    <%= link_to new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-      <div class="btn btn-warning button-margin button-padding">Cadastro gratuito</div>
+    <% if user_signed_in? %>
+    <%= link_to new_invoice_path do %>
+          <div class="btn btn-success button-margin">Comece com uma simulação </div>
+        <% end %>
+    <% else %>
+     <%= link_to new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+          <div class="btn btn-warning button-margin button-padding">Cadastro grátis</div>
+        <% end %>
     <% end %>
   </div>
 </div>
