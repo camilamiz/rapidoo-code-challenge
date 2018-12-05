@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_193834) do
+ActiveRecord::Schema.define(version: 2018_12_03_193608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,18 +23,8 @@ ActiveRecord::Schema.define(version: 2018_12_03_193834) do
     t.datetime "updated_at", null: false
     t.decimal "rate"
     t.decimal "receivable", precision: 12, scale: 2
-    t.boolean "saved"
+    t.boolean "saved", default: false
     t.index ["user_id"], name: "index_invoices_on_user_id"
-  end
-
-  create_table "simulations", force: :cascade do |t|
-    t.integer "sim_invoice_value"
-    t.integer "sim_terms"
-    t.integer "sim_user_id"
-    t.decimal "sim_rate"
-    t.decimal "sim_receivable"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -11,7 +11,7 @@ class InvoicesController < ApplicationController
   def new
     @user = current_user
     @invoice = Invoice.new
-    @invoices = Invoice.where(user_id: current_user.id, saved: nil)
+    @invoices = Invoice.where(user_id: current_user.id, saved: false)
   end
 
   def create
