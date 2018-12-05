@@ -16,9 +16,11 @@
       <%= t(".sign_out", default: "Log out") %>
     <% end %>
 
-  <% else %>
-        <%= link_to t(".sign_in", default: "Log In"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to t(".sign_up", default: "Sign Up"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% else %>
+        <%= link_to t(".sign_in", default: "Já sou cliente"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <%= link_to new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+          <div class="btn btn-success button-margin button-padding", id="sign-in-button">Abra sua conta gratuita</div>
+        <% end %>
     <% end %>
   </div>
 
