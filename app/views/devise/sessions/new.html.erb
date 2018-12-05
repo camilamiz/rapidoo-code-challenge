@@ -1,7 +1,7 @@
 <div class="container">
   <div class="navbar-space"></div>
     <div class="col-xs-4 col-xs-offset-4">
-      <div id="login-box">
+      <div class="session-box">
       <h2>Log in</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Entrar" %>
+          <%= f.button :submit, "Entrar", class: "btn-warning" %>
         </div>
       <% end %>
 
