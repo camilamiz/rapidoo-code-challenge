@@ -1,34 +1,48 @@
 <div class="container">
   <div class="navbar-space"></div>
-  <h1>Minhas duplicatas</h1>
-  <% @invoices.each do |invoice| %>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="invoice-box">
-          <div class="col-xs-1">
-            <div class="invoice-id">
-              <p>#<%= invoice.id %></p>
-            </div>
-          </div>
-          <div class="col-xs-3">
-            <div class="submit-date">
-              <p>Data: <%= invoice.created_at %></p>
-            </div>
-          </div>
-          <div class="col-xs-3">
-            <p>Valor nominal: R$ <%= invoice.invoice_value %></p>
-            <p>Prazo: <%= invoice.terms %></p>
-          </div>
-          <div class="col-xs-3">
-            <p>Valor a receber: R$ <%= invoice.receivable %></p>
-            <p>Taxa: <%= (invoice.rate)*100 %>%</p>
-          </div>
-        </div> <!-- invoice-box -->
-        <div>
-
-        </div>
+  <% if Invoice.where(saved: true).count == 0 %>
+    <div id="empty-invoices-message">
+      <div class="text-center">
+        <h1>Você ainda não possui duplicatas salvas.</h1>
+        <p>Gostaria de fazer uma simulação e salvá-las em nosso sistema?</p>
+        <%= link_to new_invoice_path do %>
+          <div class="btn btn-success button-margin">Voltar para o simulador </div>
+        <% end %>
       </div>
     </div>
+  <% else %>
+    <div class="text-center">
+      <h1>Minhas duplicatas</h1>
+    </div>
+    <% @invoices.each do |invoice| %>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="invoice-box">
+            <div class="col-xs-1">
+              <div class="invoice-id">
+                <p>#<%= invoice.id %></p>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="submit-date">
+                <p>Data: <%= invoice.created_at %></p>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <p>Valor nominal: R$ <%= invoice.invoice_value %></p>
+              <p>Prazo: <%= invoice.terms %></p>
+            </div>
+            <div class="col-xs-3">
+              <p>Valor a receber: R$ <%= invoice.receivable %></p>
+              <p>Taxa: <%= (invoice.rate)*100 %>%</p>
+            </div>
+          </div> <!-- invoice-box -->
+          <div>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
   <div class="space-footer"></div>
 </div>
